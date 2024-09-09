@@ -1,0 +1,80 @@
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f9fc;
+  font-family: 'Arial', sans-serif;
+}
+
+.login-container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  max-width: 360px;
+  width: 100%;
+}
+
+h2 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 24px;
+  font-size: 24px;
+}
+
+button.logout-btn {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.logout-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.dashboard {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 360px;
+  width: 100%;
+}
+
+.dashboard h2 {
+  color: #28a745;
+  font-weight: 600;
+  margin-bottom: 16px;
+  font-size: 26px;
+}
+
+.dashboard p {
+  color: #6c757d;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.dashboard img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-top: 20px;
+}
+
+
+.google-login-button {
+  width: 100%;
+  display: inline-block;
+}
