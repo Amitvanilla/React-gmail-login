@@ -2,10 +2,23 @@ import React, { useState } from 'react';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import './App.css';
+import axios from 'axios'
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [openaiData, setOpenaiData] = useState()
+
+  const fetchDataFromOpenAi = async(email)=>{
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_DEV_API_URL}/generate/`, {
+        prompt: email,
+      });
+      setOpenaiData(res.data.response); 
+    } catch (err) {
+      alert("Failed to generate description: " + err.message);
+    }
+  }
 
   const handleLoginSuccess = (credentialResponse) => {
     let decodedUser = jwtDecode(credentialResponse.credential);
@@ -15,6 +28,11 @@ function App() {
       email: decodedUser.email,
       picture: decodedUser.picture,
     };
+    
+    if(user){
+      fetchDataFromOpenAi(user.email)
+    }
+
 
     setUserData(user);
     setLoggedIn(true);
@@ -26,8 +44,8 @@ function App() {
 
   const handleLogout = () => {
     googleLogout();
+    setUserData({});
     setLoggedIn(false);
-    setUserData(null);
   };
 
   return (
@@ -37,6 +55,7 @@ function App() {
               <h2>Welcome, {userData.name}</h2>
               <p>Email: {userData.email}</p>
               <img src={userData.picture} alt="Profile" style={{ borderRadius: '50%', width: '100px' }} />
+              <p>Details: {openaiData}</p>
               <button className="logout-btn" onClick={handleLogout}>Logout</button>
             </div>
         ) : (
